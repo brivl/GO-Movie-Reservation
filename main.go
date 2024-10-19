@@ -37,6 +37,7 @@ func main() {
 	userHandler := &handlers.UserHandler{UserRepo: userRepo}
 
 	router.POST("/register", userHandler.Register)
+	router.POST("/admin/set", userHandler.SetAdmin)
 
 	err = router.Run(":8080")
 	if err != nil {
