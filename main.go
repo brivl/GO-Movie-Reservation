@@ -34,9 +34,18 @@ func main() {
 	})
 
 	userRepo := &repositories.UserRepository{DB: db}
+	movieRepo := &repositories.MovieRepository{DB: db}
+
 	userHandler := &handlers.UserHandler{UserRepo: userRepo}
+	movieHandler := &handlers.MovieHandler{MovieRepo: movieRepo}
 
 	router.POST("/register", userHandler.Register)
+
+	router.GET("/movies", movieHandler.GetList)
+	router.GET("/movies/{id}", movieHandler.GetById)
+	router.POST("/movies", movieHandler.Create)
+	router.PUT("/movies/{id}", movieHandler.Update)
+	router.DELETE("/movies/{id}", movieHandler.Delete)
 
 	err = router.Run(":8080")
 	if err != nil {
