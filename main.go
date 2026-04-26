@@ -40,6 +40,7 @@ func main() {
 	movieHandler := &handlers.MovieHandler{MovieRepo: movieRepo}
 
 	router.POST("/register", userHandler.Register)
+	router.POST("/admin/set", userHandler.SetAdmin)
 
 	router.GET("/movies", movieHandler.GetList)
 	router.GET("/movies/{id}", movieHandler.GetById)
